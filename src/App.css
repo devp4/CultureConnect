@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap');
+
+.App {
+  text-align: center;
+}
+
+
+/* <----------Navbar----------> */
+.navbar {
+  height: 70px;
+  position: fixed;
+  font-size: 200%;
+  background-color: rgb(35, 35, 35);
+  width: 100%;
+  border-bottom: ridge;
+  border-width: 2px;
+  border-color: rgb(25, 25, 25); 
+}
+
+.navbar h2 {
+  text-align: center;
+  font-size: 45px;
+  margin-left: 4%;
+  color: #F6F2D4;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.button {
+  background-color: #661b1c;
+  border: none;
+  color: #F6F2D4;;
+  font-size: 28px;
+  width: 56px; 
+  height: 56px;
+  border-radius: 50%;
+  margin-left: 1%;
+  margin-top: 0.5%;
+  padding-bottom: 1%;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.button:hover {
+  outline: solid;
+  color: #F6F2D4;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.button:focus {
+  outline: solid;
+  color: #F6F2D4;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.navbar input[type="search"] {
+  position: absolute;
+  margin-left: 69%;
+  margin-top: 1.1%;
+  padding: 0.4%;
+  max-width: 40%;
+  width: 10%;
+  min-width: 30%;
+  padding-left: 0.9%;
+
+  background-color: rgb(44, 45, 47);
+  font-size: 65%;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 25px;
+  color: #F6F2D4;
+  border: none;
+  outline: none;
+}
+
+.navbar input:focus {
+  color: #F6F2D4;
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  outline: none;
+}
+
+/* How to remove X in input bar https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb
+/* clears the ‘X’ from Internet Explorer */
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+
+
+/* <----------Snippet----------> */
+.snippet {
+  width: 35%;
+  height: 400px;
+  margin-top: 7%;
+  margin-left: 10%;
+  background-color: #F6F2D4;
+  border: ridge;
+  border-width: 2px;
+  border-color: rgb(25, 25, 25); 
+  border-radius: 12px;
+  float: left;
+}
+
+.snippetShifted {
+  width: 35%;
+  height: 650px;
+  margin-top: 7%;
+  background-color: #F6F2D4;
+  border: ridge;
+  border-width: 2px;
+  border-color: rgb(25, 25, 25); 
+  border-radius: 12px;
+  float: left;
+  margin-left: 47%;
+  overflow: auto;
+}
+
+.snippetHeader {
+  font-weight: 500;
+  font-size: 20px;
+  height: 40px;
+  border-bottom: ridge;
+  border-bottom-width: 2px;
+  border-color: rgb(25, 25, 25); 
+  text-align: left;
+  padding-left: 5px;
+  padding-top: 2px;
+  overflow: auto;
+}
+
+.snippet p {
+  margin-bottom: 1%;
+  height: 320px;
+  background-color: #F6F2D4;
+  overflow: auto;
+  /* padding-top: 2%; */
+
+  /* padding-left: 5px; */
+  text-align: left;
+}
+
+.snippetText{
+  padding-left: 6px;
+}
+
+.image {
+  width: 100%;
+}
+
+/* <----------Sidebar----------> */
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 30%;
+  position: fixed;
+  top: 6.65%;
+  background-color: rgb(35, 35, 35); 
+  overflow-x: hidden;
+
+  padding-top: 0.3%;
+  padding-left: 0.3%;
+
+  border-right: ridge;
+  border-right-width: 2px;
+  border-bottom-width: 10px;
+  border-color: rgb(25, 25, 25);
+  overflow-y: auto;
+}
+
+.sidebar h1 {
+  text-align: left;
+  color: #F6F2D4;
+  font-size: 150%;
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 7%;
+  margin-left: 3.2%;
+}
+
+
+.titleInput[type="text"] {
+  margin-top: 0.9%;
+  margin-left: 2%;
+  height: 40px;
+  width: 90%;
+  padding-left: 3%;
+  overflow: auto;
+  margin-right: 50%;
+  background-color: rgb(44, 45, 47);
+  font-size: 120%;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 20px;
+  color: #F6F2D4;
+  border: none;
+  outline: none;
+}
+
+.titleInput:focus {
+  color: #F6F2D4;
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  outline: none;
+}
+
+.description {
+  margin-top: 0.9%;
+  margin-left: 2%;
+  height: 250px;
+  min-height: 200px;
+  max-height: 300px;
+  width: 90%;
+  min-width: 90%;
+  max-width: 90%;
+  padding-left: 3%;
+  padding-top: 2.5%;
+  overflow: auto;
+  margin-right: 50%;
+  background-color: rgb(44, 45, 47);
+  font-size: 120%;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 20px;
+  color: #F6F2D4;
+  border: none;
+  outline: none;
+}
+
+.postButton {
+  background-color: #661b1c;
+  border: none;
+  color: #F6F2D4;;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 28px;
+  width: 100px; 
+  height: 56px;
+  border-radius: 25px;
+  margin-left: 1%;
+  margin-top: 10%;
+  padding-bottom: 1.2%;
+  margin-bottom: 15%;
+}
+
+.postButton:hover {
+  outline: solid;
+  font-family: 'Quicksand', sans-serif;
+  color: #F6F2D4;
+}
+
+.postButton:focus {
+  outline: solid;
+  font-family: 'Quicksand', sans-serif;
+  color: #F6F2D4;
+}
