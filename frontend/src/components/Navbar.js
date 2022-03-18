@@ -1,4 +1,3 @@
-import React from "react";
 const Navbar = ({sideBarState, setsideBarState}) => {
 
     const onButtonClick = (sideBarState) => {
@@ -8,7 +7,7 @@ const Navbar = ({sideBarState, setsideBarState}) => {
         else {
             setsideBarState(true)
         }
-    } 
+    }
 
     return(
         <div className="navbar">

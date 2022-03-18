@@ -1,11 +1,15 @@
-import { doc } from "firebase/firestore"
-import { set, ref, getDatabase, push, child, update } from "firebase/database"
-import { initializeApp } from "firebase/app";
-import { config } from '../firebaseConfig'
+async function createPost(postData) {
+    const response = await fetch("/api/create_post", {
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(postData)
+        }
+    )
 
-const app = initializeApp(config);
-const db = getDatabase();
-const dbRef = ref(getDatabase());
+    return response
+}
 
 const Sidebar = ({setsideBarState, data, setData}) => {
     
@@ -24,22 +28,17 @@ const Sidebar = ({setsideBarState, data, setData}) => {
             alert("Description can not be blank")
             return
         }
+
         const postData = {
             title: formData.title,
             text: formData.text,
             url: formData.url
         };
-
-        const newPostKey = push(child(ref(db), 'snippets')).key;
-
-        // Write the new post's data simultaneously in the posts list and the user's post list.
-        const updates = {};
-        updates['/snippets/' + newPostKey] = postData;
         
-        let newData = [formData]
-        setData([...newData, ...data])
-        setsideBarState(false)
-        update(ref(db), updates);
+        const response = createPost(postData)
+        response.then(response => response.status === 200 ? setsideBarState(false) : setsideBarState(true))
+        if (response === 200)
+            setsideBarState(false)
     }
 
     return (
