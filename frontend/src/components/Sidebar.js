@@ -1,5 +1,5 @@
 async function createPost(postData) {
-    const response = await fetch("/api/create_post", {
+    const response = await fetch("/api/create-post", {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json'
@@ -37,8 +37,6 @@ const Sidebar = ({setsideBarState, data, setData}) => {
         
         const response = createPost(postData)
         response.then(response => response.status === 200 ? setsideBarState(false) : setsideBarState(true))
-        if (response === 200)
-            setsideBarState(false)
     }
 
     return (

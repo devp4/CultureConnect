@@ -5,25 +5,38 @@ import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Snippet from './components/Snippet';
 
-async function getData() {
-  const response = await fetch('/api')
-  const data = await response.json()
-}
-
 
 function App() {
 
   // States 
   const [sideBarState, setsideBarState] = useState(false)
-  const [data, setData] = useState([])
+  const [posts, setPosts] = useState([])
 
-  useEffect(getData, [])
+  useEffect( () => {
+    
+    // Get Posts from database
+    async function getPosts() {
+      const response = await fetch('/api/get-posts')
+      const data = await response.json()
+
+      var snippets = []
+
+      for (let post in data ){
+        snippets.push(data[post])
+      }
+    }
+  
+    getPosts()
+
+  }, [])
+
   
   return (
     <div className="App">
-      <Navbar sideBarState={sideBarState} setsideBarState={setsideBarState}></Navbar>
-      {sideBarState ? <Sidebar setsideBarState={setsideBarState} data={data} setData={setData}></Sidebar> : ""}
-      {data.map((data) => <Snippet title={data.title} text={data.text} sideBarState={sideBarState} url={data.url}></Snippet>)}
+      {console.log(posts)}
+      <Navbar sideBarState={sideBarState} setsideBarState={setsideBarState}/>
+      {sideBarState ? <Sidebar setsideBarState={setsideBarState} data={posts} setData={setPosts}/> : ""}
+      {posts.map((post) => <Snippet title={post.title} text={post.text} sideBarState={sideBarState} url={post.url}/>)}
     </div>
   
   )
