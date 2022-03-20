@@ -24,6 +24,8 @@ function App() {
       for (let post in data ){
         snippets.push(data[post])
       }
+
+      setPosts(snippets)
     }
   
     getPosts()
@@ -33,7 +35,6 @@ function App() {
   
   return (
     <div className="App">
-      {console.log(posts)}
       <Navbar sideBarState={sideBarState} setsideBarState={setsideBarState}/>
       {sideBarState ? <Sidebar setsideBarState={setsideBarState} data={posts} setData={setPosts}/> : ""}
       {posts.map((post) => <Snippet title={post.title} text={post.text} sideBarState={sideBarState} url={post.url}/>)}

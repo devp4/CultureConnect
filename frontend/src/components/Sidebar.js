@@ -36,7 +36,23 @@ const Sidebar = ({setsideBarState, data, setData}) => {
         };
         
         const response = createPost(postData)
-        response.then(response => response.status === 200 ? setsideBarState(false) : setsideBarState(true))
+
+        response.then((response) => {
+
+            // Check if response was valid
+            if (response.status === 200){
+                // Add post to Data
+                data.push(postData)
+                setData(data)
+                
+                alert("Post Created Successfully")
+                setsideBarState(false)
+            }
+            else {
+                alert("Count Not Create Post")
+                setsideBarState(true)
+            }
+        })
     }
 
     return (
