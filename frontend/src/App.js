@@ -11,9 +11,48 @@ function App() {
   // States 
   const [sideBarState, setsideBarState] = useState(false)
   const [posts, setPosts] = useState([])
+  const [tempPosts, setTempPosts] = useState([])
 
+  // Filter Post Function
+  const filterPosts = (searchTerm) => {
+
+    if (searchTerm.trim() === "") {
+      // Set posts back to original posts if blank
+      setPosts(tempPosts)
+      console.log("here2")
+      return
+    }
+    else {
+      getFilteredPosts(searchTerm)
+    }
+
+
+    // Function to get filtered posts
+    async function getFilteredPosts(searchTerm) {
+      const body = {"search_term": searchTerm.toLowerCase()}
+      
+      const response = await fetch("/api/search-post", {
+        method: "POST", 
+        headers: {
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(body)
+      })
+      
+      const data = await response.json()
+      console.log(data)
+      var snippets = []
+      
+      for (let post in data) {
+        snippets.push(data[post])
+      }
+
+      setPosts(snippets)
+    }
+  }
+
+  // Website Startup Use Effect (Set Listeners and posts)
   useEffect( () => {
-    
     // Get Posts from database
     async function getPosts() {
       const response = await fetch('/api/get-posts')
@@ -26,9 +65,23 @@ function App() {
       }
 
       setPosts(snippets)
+      setTempPosts(snippets)
+      console.log(tempPosts)
     }
   
     getPosts()
+
+    // Set Window Listener
+
+    // Listener for when search bar is entered
+    document.querySelector("#searchInput").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        window.scrollTo(0, 0)
+        var searchTerm = document.getElementById("searchInput").value
+        filterPosts(searchTerm)
+        console.log("here")
+      }
+    })
 
   }, [])
 

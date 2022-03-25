@@ -11,7 +11,7 @@ app = Flask(__name__)
 cred = firebase_admin.credentials.Certificate("secrets.json")
 data_base = firebase_admin.initialize_app(
     cred,
-    {"databaseURL": "YOUR DATABASE URL"}   
+    {"databaseURL": "https://culture-connect-b33c8-default-rtdb.firebaseio.com/"}   
 )
 
 
@@ -39,11 +39,24 @@ def create_post():
         }
     
     '''
-
+    
     request_data = request.get_json()
     ref = db.reference("snippets")
     ref.push(request_data)
 
     return "Post Created"
 
+@app.route("/api/search-post", methods=["POST"])
+def search_post():
+    request_data = request.get_json()
 
+    ref = db.reference("snippets")
+    data = ref.get()
+    parsed_data = {}
+
+    for item in data: 
+        if request_data["search_term"] in data[item]["title"].lower(): 
+            parsed_data[item] = data[item]
+
+    return parsed_data
+    
