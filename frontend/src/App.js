@@ -5,13 +5,12 @@ import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Snippet from './components/Snippet';
 
-
 function App() {
 
   // States 
   const [sideBarState, setsideBarState] = useState(false)
   const [posts, setPosts] = useState([])
-  const [tempPosts, setTempPosts] = useState([])
+  var tempPosts = []
 
   // Filter Post Function
   const filterPosts = (searchTerm) => {
@@ -19,7 +18,6 @@ function App() {
     if (searchTerm.trim() === "") {
       // Set posts back to original posts if blank
       setPosts(tempPosts)
-      console.log("here2")
       return
     }
     else {
@@ -40,7 +38,6 @@ function App() {
       })
       
       const data = await response.json()
-      console.log(data)
       var snippets = []
       
       for (let post in data) {
@@ -65,8 +62,7 @@ function App() {
       }
 
       setPosts(snippets)
-      setTempPosts(snippets)
-      console.log(tempPosts)
+      tempPosts = snippets
     }
   
     getPosts()
@@ -79,7 +75,6 @@ function App() {
         window.scrollTo(0, 0)
         var searchTerm = document.getElementById("searchInput").value
         filterPosts(searchTerm)
-        console.log("here")
       }
     })
 
